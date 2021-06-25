@@ -1,6 +1,7 @@
 package ru.netology.netologyjdbctask.dao;
 
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -15,8 +16,8 @@ import java.util.stream.Collectors;
 
 @Repository
 public class ProductDAO {
-    private String scriptName = "product_name.sql";
-    private String getProductNameSQLScript = read(scriptName);
+    private static final String scriptName = "product_name.sql";
+    private static final String getProductNameSQLScript = read(scriptName);
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -24,14 +25,9 @@ public class ProductDAO {
         this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
     }
 
-    public List<String> getProductName(String name) {
-        List<Map<String, Object>> productName = namedParameterJdbcTemplate.queryForList(getProductNameSQLScript, Map.of("name", name));
-        List<String> products = new ArrayList<>();
-        for (Map<String, Object> map:
-             productName) {
-            products.add((String) map.get("product_name"));
-        }
-        return products;
+    public List<String> getProductName(String ownerName) {
+        MapSqlParameterSource parameters = new MapSqlParameterSource("name", ownerName);
+        return namedParameterJdbcTemplate.queryForList(getProductNameSQLScript, parameters, String.class);
     }
 
     private static String read(String scriptFileName) {
