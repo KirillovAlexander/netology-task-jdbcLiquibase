@@ -16,6 +16,7 @@ import java.util.stream.Collectors;
 @Repository
 public class ProductDAO {
     private String scriptName = "product_name.sql";
+    private String getProductNameSQLScript = read(scriptName);
 
     private final NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
@@ -24,7 +25,7 @@ public class ProductDAO {
     }
 
     public List<String> getProductName(String name) {
-        List<Map<String, Object>> productName = namedParameterJdbcTemplate.queryForList(read(scriptName), Map.of("name", name));
+        List<Map<String, Object>> productName = namedParameterJdbcTemplate.queryForList(getProductNameSQLScript, Map.of("name", name));
         List<String> products = new ArrayList<>();
         for (Map<String, Object> map:
              productName) {
