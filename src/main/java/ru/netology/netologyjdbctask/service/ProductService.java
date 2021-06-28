@@ -2,6 +2,7 @@ package ru.netology.netologyjdbctask.service;
 
 import org.springframework.stereotype.Service;
 import ru.netology.netologyjdbctask.dao.ProductDAO;
+import ru.netology.netologyjdbctask.entity.Order;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ProductService {
         this.productDAO = productDAO;
     }
 
-    public List<String> getProductName(String name) {
+    public List<Order> getProductName(String name) {
         return productDAO.getProductName(name);
     }
 

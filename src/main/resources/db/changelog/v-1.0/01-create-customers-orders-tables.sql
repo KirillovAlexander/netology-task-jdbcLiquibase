@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS CUSTOMERS
 CREATE TABLE IF NOT EXISTS ORDERS
 (
     id           int PRIMARY KEY,
-    date         date         not null,
+    date         timestamp    not null,
     customer_id  int          not null,
     product_name varchar(150) not null,
     amount       int          not null,
