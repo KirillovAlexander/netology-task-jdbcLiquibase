@@ -3,7 +3,6 @@ package ru.netology.netologyjdbctask.entity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,4 +27,6 @@ public class Customer {
 
     private String phoneNumber;
 
+    @OneToMany(mappedBy = "id")
+    private List<Order> orders;
 }

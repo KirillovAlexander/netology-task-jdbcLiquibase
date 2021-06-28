@@ -23,7 +23,7 @@ public class ProductDAO {
     @PersistenceContext
     EntityManager entityManager;
 
-    public List<Order> getProductName(String ownerName) {
+    public List<Order> getProductsNames(String ownerName) {
         Query query = entityManager.createQuery("Select o from Order o where o.customer.name =: name");
         query.setParameter("name", ownerName);
         List<Order> orders = query.getResultList();

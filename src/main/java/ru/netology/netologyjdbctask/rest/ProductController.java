@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.netology.netologyjdbctask.entity.Order;
+import ru.netology.netologyjdbctask.dto.ProductDTO;
 import ru.netology.netologyjdbctask.service.ProductService;
 
 import java.util.List;
@@ -20,7 +20,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Order> getProduct(@RequestParam String name) {
-        return productService.getProductName(name);
+    public List<ProductDTO> getProducts(@RequestParam String name) {
+        return productService.getProductsNames(name);
     }
 }
