@@ -10,7 +10,7 @@ import ru.netology.netologyjdbctask.service.ProductService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products/fetch-product")
+@RequestMapping("/")
 public class ProductController {
 
     private final ProductService productService;
@@ -19,8 +19,13 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping
+    @GetMapping("/products/fetch-product")
     public List<ProductDTO> getProducts(@RequestParam String name) {
         return productService.getProductsNames(name);
+    }
+
+    @GetMapping ("/hello")
+    public String Hello() {
+        return "Hello everyone!";
     }
 }
